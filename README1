@@ -1,0 +1,98 @@
+# Urban Tree Canopy & Heat Vulnerability in Chicago
+
+**Final Project — Earth & Environmental Science**  
+**Midpoint First Idea**
+
+---
+
+## Project Overview
+
+This project is dedicated to investigating the effect of urban tree canopy coverages on higher land surface temperatures and greater social vulnerability. This project will furthermore investigate the variation of urban tree canopy coverage in Chicago. It is clear that when it comes to urban heat islands, lower income communities and communities of colors are the ones that are affected the most. Trees can be considered the most effective mitigation stratehy due to their cost. The analysis will use spatial and demographic data that can be found publically.
+
+---
+
+## Research Question
+
+**How does urban tree canopy coverage vary across Chicago neighborhoods, and are lower-canopy areas associated with higher land surface temperatures and greater social vulnerability?**
+
+---
+
+## Data Sources
+
+Data set - Source - Spatial Coverage - Temporal Coverage - Variables - Format
+
+#1 - Chicago Neighborhood Boundaries - Chicago Data Portal - Chicago, IL - NA - Neighborhood Name, Geometry - Shapefile
+#2 - Chicago Tree Canopy Coverage - Chicago Data Portal - Chicago, IL - 2010 to 2020 - Percentage Canopy Coverage per Neighborhood - CSV/Shapefile
+#3 - Landsat Land Surface Temperature - USGS Earth Explorer - Chicago Metropolitan Area - 2020 to 2020 - Land Surface Temperature in Degrees Celsius - GeoTIFF
+#4 - NLCD Impervious Surface - USGS - National - 2021 - Percentage impervious surface - GeoTIFF
+#5 - CDC Social Vulnerability Index - CDC ATSDR - Census Tract - 2020 - SVI Score, Income, Race/Ethnicity - CSV
+#6 - American Community Survey (ACS) - tidycensus R package - Census Tract - 2020-2025 - Median Income percentage, POC, population - API via R
+
+
+---
+
+## Preliminary Method Plan
+
+### 1. Data Cleaning
+- Load Chicago neighborhood boundaries as an `sf` object in R
+- Join tree canopy CSV data to neighborhood polygons by name
+- Download CDC SVI at census-tract level and spatially join to neighborhoods 
+- Extract mean land surface temperature per neighborhood from Landsat raster
+- Pull ACS income and race/ethnicity data 
+
+### 2. Variables
+
+Response - Mean Land Surface Temperature in degrees celsius per neighborhood
+Predictor 1 - Tree canopy coverage in percentage
+Predictor 2 - Impervious Surface in percentage
+Predictor 3 - Median Household Income in Dollars
+Predictor 4 - Percentage of residents identifying as non-white
+
+---
+
+**Midpoint Second Idea**
+
+##Project Overview
+
+This project will dedicate to investigating how land cover in the Chicago area has changed between 2001 and 2020, and also to determining where urban expansion has ocurred at the expense of ecologically valuable land. This will occur through the analysis of two decades of data on land cover.
+
+##Research Question
+**How has land cover in Chicago changed between 2001 and 2021, where has urban expansion occured at the expense of forest, wetland, or agricultural land?**
+
+##Data Sources
+#1 - National Land Cover Database - USGS - Unites States - 2001,2011,2021 - Land Cover Class - GeoTIFF
+#2 - NLCD Land Cover Change Product - USGS - United States - 2001-2021 - From/to class transitions - GeoTIFF
+#3 - Chicago Metro Boundary - Chicago metropolitan agency for planning - 7-county Chicago Metro - Current - Regional Boundary - Shapefile
+#4 - County boundaries - Tiger/Line Shapefiles - Cook, DuPage, Kane, Lake, McHenry, Will, Kendall - 2020, County Geometry - Shapefile
+
+## Key Land Cover Classes
+
+Class Value - Label - Ecological Significance
+
+11 - Open Water - Aquatic Habitat
+21-24 - Developed - Urban/Suburban Land
+41-43 - Forest - Carbon Storage/Habitat
+52 - Shrub/Scrub - Transitional Habitat
+71 - Herbaceous Grassland - Native Prarie Remnants
+81-82 - Pasture/Cultivated Crops - Agricultural Land
+90 - Woody Wetlands - Flood Regulation/Habitat
+95 - Emergent Herbaceous Wetlands - High Ecological Value
+
+##Preliminary Method Plan
+
+1. Data Cleaning
+-Download NLCD 2001 and 2021 rasters from MRLC
+-Load Chicago metro boundary shapefile and reproject to match NLCD CRS
+-Crop and mask both rasters to the Chicago metro extent
+-Verify that class values match expected NLCD legend
+
+##Variables
+
+Role - Variable
+Primary - Land Cover Class per Pixel (2001 and 2021)
+Derived - Area per land cover class per year
+Derived - Net change in area per class
+Derived - Land cover transition pairs
+
+
+
