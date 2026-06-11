@@ -1,0 +1,28 @@
+Regression: Heat Diff ~ Tree Canopy + Demographics
+Chicago Block Groups, 2020 | n = 2163 
+
+
+Call:
+lm(formula = temp_diff ~ treecanopy_pct + pctpoc_pct + pctpov_pct + 
+    unempl_pct, data = chicago)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-13.5868  -1.5367   0.4678   2.1041   7.8136 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)    11.532488   0.232269  49.651  < 2e-16 ***
+treecanopy_pct -0.221849   0.008053 -27.549  < 2e-16 ***
+pctpoc_pct      0.029305   0.002814  10.416  < 2e-16 ***
+pctpov_pct     -0.028338   0.003989  -7.104 1.64e-12 ***
+unempl_pct     -0.022046   0.007036  -3.133  0.00175 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.911 on 2158 degrees of freedom
+Multiple R-squared:  0.3111,	Adjusted R-squared:  0.3099 
+F-statistic: 243.7 on 4 and 2158 DF,  p-value: < 2.2e-16
+
+
+AIC: 10767.94 
